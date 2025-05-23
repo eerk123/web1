@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "age": 30,
+        "slug": "john-doe",
+        "bio": "John is a software engineer with 10 years of experience in web development.",
+        "content" : "John has worked on various projects, including e-commerce platforms and content management systems. He is proficient in JavaScript, Python, and Ruby."
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "age": 28,
+        "slug": "jane-smith",
+        "bio": "Jane is a graphic designer with a passion for creating beautiful and functional designs.",
+        "content" : "She has worked with various clients, helping them to establish their brand identity and create stunning visuals for their products."
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "age": 35,
+        "slug": "alice-johnson",
+        "bio": "Alice is a data scientist with expertise in machine learning and data analysis.",
+        "content" : "She has a strong background in statistics and programming, and she enjoys solving complex problems using data."
+    }
+    ,
+        {
+          "id": 1,
+          "title": "Мэдээний гарчиг 1",
+          "summary": "Энэ бол мэдээний товч тайлбар.",
+          "content": "Энэ бол мэдээний дэлгэрэнгүй агуулга.",
+          "date": "2023-10-01",
+          "category": "Технологи"
+        },
+        {
+          "id": 2,
+          "title": "Мэдээний гарчиг 2",
+          "summary": "Энэ бол өөр нэг мэдээний товч тайлбар.",
+          "content": "Энэ бол өөр нэг мэдээний дэлгэрэнгүй агуулга.",
+          "date": "2023-10-02",
+          "category": "Эдийн засаг"
+        }
+      
+]

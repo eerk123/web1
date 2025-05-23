@@ -1,30 +1,49 @@
+// app/root.tsx
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
-  Scripts,
   ScrollRestoration,
+  Scripts,
 } from "@remix-run/react";
-import "./tailwind.css";
+import stylesheet from "~/tailwind.css";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+// Header болон Footer компонентуудыг импортлоно
+import Header from "~/components/home/Header";
+import Footer from "~/components/home/footer";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+];
+
+export const meta: MetaFunction = () => [
+  { charset: "utf-8" },
+  { title: "My News Site" },
+  { name: "viewport", content: "width=device-width,initial-scale=1" },
+];
+
+export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-white text-gray-900">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="h-full flex flex-col min-h-screen">
+        <Header />
+
+        <main className="flex-grow">
+          <Outlet />
+        </main>
+
+        <Footer />
+
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }
