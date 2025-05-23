@@ -1,48 +1,36 @@
-import type { MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import fs from "fs/promises";
+import path from "path";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
+interface NewsItem {
+  id: string;
+  title: string;
+  summary: string;
+  date: string;
+}
+
+
+export const loader = async () => {
+  const filePath = path.resolve("app/data/news.json");
+  const fileContent = await fs.readFile(filePath, "utf-8");
+  const news = JSON.parse(fileContent);
+  return json(news);
 };
 
 export default function Index() {
+  const news = useLoaderData();
+
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Мэдээний жагсаалт</h1>
+      {news.map((item: any) => (
+        <div key={item.id} className="border-b p-4">
+          <h2 className="text-xl font-bold">{item.title}</h2>
+          <p>{item.summary}</p>
+          <p className="text-sm text-gray-500">{item.date}</p>
+        </div>
+      ))}
     </div>
   );
 }
